@@ -1,0 +1,22 @@
+---
+GENERATOR:
+  PackageName: all
+  Includes: ["DEV_Config.h", "bcm2835.h", "EPD_IT8951.h"]
+
+PARSER:
+  IncludePaths: ["/usr/include", "/usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include"]
+  SourcesPaths: ["all/DEV_Config.h", "all/bcm2835.h", "all/EPD_IT8951.h"]
+
+TRANSLATOR:
+  ConstRules:
+    defines: eval
+  Rules:
+    global:
+      - {action: accept, from: "^DEV_"}
+      - {action: accept, from: "^EPD_"}
+      - {action: accept, from: "^bcm2835_"}
+      - {action: accept, from: "^BCM2835_"}
+      - {action: accept, from: "^IT8951_"}
+      - {action: accept, from: "^EPD_IT8951_"}
+    private:
+      - {transform: unexport}
